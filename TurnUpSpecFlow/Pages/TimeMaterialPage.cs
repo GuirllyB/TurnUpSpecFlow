@@ -50,13 +50,15 @@ namespace SpecFlowTurnUpPortal.Pages
             WaitUtils.WaitToBeClickable(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
             IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPageButton.Click();
-            VerifyRecordCreated(webDriver);
+            VerifyRecordCreated(webDriver, code);
         }
 
-        public void VerifyRecordCreated(IWebDriver webDriver)
+        public void VerifyRecordCreated(IWebDriver webDriver, string code)
            {
             WaitUtils.WaitToBeVisible(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]", 3);
             IWebElement newCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+         
+            
             /*if (newCode.Text == "GBTime")
             {
                 Assert.Pass("New Time record has been created successfully");
@@ -66,10 +68,10 @@ namespace SpecFlowTurnUpPortal.Pages
                 Assert.Fail("New Time record hasn't been created.");
             }*/
 
-            Assert.That(newCode.Text == "GBTime", "New Time record hasn't been created.");
+            Assert.That(newCode.Text == code, "New Time record hasn't been created.");
             }
 
-        public void EditNewlyCreatedTMRecord(IWebDriver webDriver)
+        public void EditNewlyCreatedTMRecord(IWebDriver webDriver, string code, string description)
         {
             Thread.Sleep(2000);
 
@@ -87,12 +89,12 @@ namespace SpecFlowTurnUpPortal.Pages
             //Edit Code to add "New"
             IWebElement codeTextboxEdit = webDriver.FindElement(By.Id("Code"));
             codeTextboxEdit.Clear();
-            codeTextboxEdit.SendKeys("GBTimeNew");
+            codeTextboxEdit.SendKeys(code);
 
             //Edit Description to add "New"
             IWebElement descriptionTextboxEdit = webDriver.FindElement(By.Id("Description"));
             descriptionTextboxEdit.Clear();
-            descriptionTextboxEdit.SendKeys("GBTimeNew Description");
+            descriptionTextboxEdit.SendKeys(description);
 
             //Edit Price per unit
             IWebElement priceTextboxEdit = webDriver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
@@ -107,7 +109,7 @@ namespace SpecFlowTurnUpPortal.Pages
             Thread.Sleep(2000);
         }
 
-        public void VerifyNewlyEditedTMRecord(IWebDriver webDriver)
+        public void VerifyNewlyEditedTMRecord(IWebDriver webDriver, string code)
         {
             Thread.Sleep(2000);
 
@@ -121,7 +123,7 @@ namespace SpecFlowTurnUpPortal.Pages
             IWebElement editedCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
 
-            Assert.That(editedCode.Text == "GBTimeNew", "Time record hasn't been edited.");
+            Assert.That(editedCode.Text == code, "Time record hasn't been edited.");
             Thread.Sleep(2000);
         }
 
@@ -152,7 +154,7 @@ namespace SpecFlowTurnUpPortal.Pages
             Thread.Sleep(2000);
         }
 
-        public void VerifyDeletedTMRecord(IWebDriver webDriver)
+        public void VerifyDeletedTMRecord(IWebDriver webDriver, string code)
         {
             Thread.Sleep(2000);
 
@@ -166,7 +168,7 @@ namespace SpecFlowTurnUpPortal.Pages
             IWebElement deletedCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 
 
-            Assert.That(deletedCode.Text == "GBTimeNew", "Time record hasn't been deleted.");
+            Assert.That(deletedCode.Text == code, "Time record hasn't been deleted.");
         }
 
 
