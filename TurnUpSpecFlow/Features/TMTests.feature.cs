@@ -107,7 +107,7 @@ testRunner.Given("user logs into TurnUp Portal", ((string)(null)), ((TechTalk.Sp
 testRunner.And("user navigates to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
-testRunner.When("user creates a new TM record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("user creates a new TM record \'GBTime\' \'GBTime Description\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
 testRunner.Then("verify TM record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -117,12 +117,17 @@ testRunner.Then("verify TM record is created", ((string)(null)), ((TechTalk.Spec
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify user is able to edit a TM record")]
-        public virtual void VerifyUserIsAbleToEditATMRecord()
+        [NUnit.Framework.DescriptionAttribute("Verify user is able to create a TM record with different data")]
+        [NUnit.Framework.TestCaseAttribute("\'GBTime\'", "\'GBTime Description\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'GBTime1\'", "\'GBsample1\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'GBTime2\'", "\'GBsample2\'", null)]
+        public virtual void VerifyUserIsAbleToCreateATMRecordWithDifferentData(string code, string description, string[] exampleTags)
         {
-            string[] tagsOfScenario = ((string[])(null));
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user is able to edit a TM record", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            argumentsOfScenario.Add("Code", code);
+            argumentsOfScenario.Add("Description", description);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user is able to create a TM record with different data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -150,23 +155,23 @@ testRunner.Given("user logs into TurnUp Portal", ((string)(null)), ((TechTalk.Sp
 testRunner.And("user navigates to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
-testRunner.When("user clicks on <<Edit>> button under TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When(string.Format("user creates a new TM record {0} {1}", code, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
-testRunner.Then("verify TM record is edited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("verify TM record is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify user is able to delete a TM record")]
-        public virtual void VerifyUserIsAbleToDeleteATMRecord()
+        [NUnit.Framework.DescriptionAttribute("Verify user is able to edit a TM record")]
+        public virtual void VerifyUserIsAbleToEditATMRecord()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user is able to delete a TM record", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user is able to edit a TM record", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -186,16 +191,59 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
+#line 25
 testRunner.Given("user logs into TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 26
 testRunner.And("user navigates to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 21
+#line 27
+testRunner.When("user clicks on <<Edit>> button under TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+testRunner.Then("verify TM record is edited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Verify user is able to delete a TM record")]
+        public virtual void VerifyUserIsAbleToDeleteATMRecord()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify user is able to delete a TM record", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 31
+testRunner.Given("user logs into TurnUp Portal", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 32
+testRunner.And("user navigates to TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
 testRunner.When("user clicks on <<Delete>> button under TM Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 22
+#line 34
 testRunner.Then("verify TM record is deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

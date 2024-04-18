@@ -7,7 +7,7 @@ namespace SpecFlowTurnUpPortal.Pages
 {
     public class TimeMaterialPage : CommonDriver
     {
-        public void CreateTimeRecord(IWebDriver webDriver)
+        public void CreateTimeRecord(IWebDriver webDriver, string code, string description)
         {
             //Create a new Time/Material record
             Thread.Sleep(2000);
@@ -25,11 +25,11 @@ namespace SpecFlowTurnUpPortal.Pages
 
             //Enter Code
             IWebElement codeTextbox = webDriver.FindElement(By.Id("Code"));
-            codeTextbox.SendKeys("GBTime");
+            codeTextbox.SendKeys(code);
 
             //Enter Description
             IWebElement descriptionTextbox = webDriver.FindElement(By.Id("Description"));
-            descriptionTextbox.SendKeys("GBTime Description");
+            descriptionTextbox.SendKeys(description);
 
             WaitUtils.WaitToBeVisible(webDriver, "XPath", "//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]", 5);
 

@@ -41,11 +41,13 @@ namespace SpecFlowTurnUpPortal.StepDefinitions
             homePageObj.NavigateToTimeMaterialPage(webDriver);
         }
 
-        [When(@"user creates a new TM record")]
-        public void WhenUserCreatesANewTMRecord()
+      
+        [When(@"user creates a new TM record '([^']*)' '([^']*)'")]
+        public void WhenUserCreatesANewTMRecord(string code, string description)
         {
-            tmPageObj.CreateTimeRecord(webDriver);
+            tmPageObj.CreateTimeRecord(webDriver, code, description);
         }
+
 
         [Then(@"verify TM record is created")]
         public void ThenVerifyTMRecordIsCreated()
