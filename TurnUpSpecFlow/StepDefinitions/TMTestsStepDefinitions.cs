@@ -14,13 +14,22 @@ namespace SpecFlowTurnUpPortal.StepDefinitions
         HomePage homePageObj = new HomePage();
         TimeMaterialPage tmPageObj = new TimeMaterialPage();
 
-        
-        [Given(@"user logs into TurnUp Portal")]
-        public void GivenUserLogsIntoTurnUpPortal()
+        [Before] public void Before() 
         {
             //Open Chrome Browser
             webDriver = new ChromeDriver();
             Thread.Sleep(1000);
+        }
+        
+        [After] public void After()
+        {
+            webDriver.Quit();
+        }
+
+        [Given(@"user logs into TurnUp Portal")]
+        public void GivenUserLogsIntoTurnUpPortal()
+        {
+    
 
             //Login page object initialisation and definition
             loginPageObj.LoginActions(webDriver, "hari", "123123");

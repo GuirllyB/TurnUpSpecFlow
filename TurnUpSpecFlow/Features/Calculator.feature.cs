@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlowTurnUpPortal.Features
+namespace TurnUpSpecFlow.Features
 {
     using TechTalk.SpecFlow;
     using System;
