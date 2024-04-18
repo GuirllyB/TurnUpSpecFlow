@@ -9,7 +9,9 @@ namespace SpecFlowTurnUpPortal.Pages
         IWebElement usernameTextbox;
         private readonly By passwordTextboxLocator = By.Id("Password");
         IWebElement passwordTextbox;
-        private readonly By loginButtonLocator = By.XPath("//*[@id='loginForm']/form/div[3]/input[1]");
+        //private readonly By loginButtonLocator = By.XPath("//*[@id='loginForm']/form/div[3]/input[1]");
+        private readonly By loginButtonLocator = By.XPath("//*[@value='Log in']");
+
         IWebElement loginButton;
 
         public void LoginActions(IWebDriver webDriver, string username, string password)
