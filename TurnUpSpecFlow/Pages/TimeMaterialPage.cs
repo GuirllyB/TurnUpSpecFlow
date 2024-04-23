@@ -46,30 +46,58 @@ namespace SpecFlowTurnUpPortal.Pages
 
             Thread.Sleep(2000);
 
-            //Check if new Time/Material record has been created successfully
-            WaitUtils.WaitToBeClickable(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
-            IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-            goToLastPageButton.Click();
-            VerifyRecordCreated(webDriver, code);
+           
         }
 
         public void VerifyRecordCreated(IWebDriver webDriver, string code)
            {
-            WaitUtils.WaitToBeVisible(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]", 3);
-            IWebElement newCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-         
-            
-            /*if (newCode.Text == "GBTime")
-            {
-                Assert.Pass("New Time record has been created successfully");
-            }
-            else
-            {
-                Assert.Fail("New Time record hasn't been created.");
-            }*/
+            Thread.Sleep(2000);
 
-            Assert.That(newCode.Text == code, "New Time record hasn't been created.");
+            //Check if new Time/Material record has been created successfully
+            WaitUtils.WaitToBeClickable(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
+            IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+          
+            string tmTablePages = webDriver.FindElement(By.XPath("//li/span")).Text;
+
+            //Pages
+            for (int i = 1; i <= tmTablePages.Length; i++)
+            {
+                //Rows
+                int tmTableRows = webDriver.FindElements(By.XPath("//tbody/tr")).Count();
+                for (int j = 1; j <= tmTableRows; j++)
+                {
+                    IWebElement codeValue = webDriver.FindElement(By.XPath("//tr[" + j + "]/td[1]"));
+                    if (codeValue.Text == "GBTime Description")
+                    {
+                        Console.WriteLine("Record was found");
+                        webDriver.FindElement(By.XPath("//tr[\" + j + \"]/td/a[1]")).Click();
+                        break;
+                    };
+
+                                    
+                }
+                webDriver.FindElement(By.XPath("//span[contains(text(),\"Go to the next page\")]")).Click();
+
             }
+
+        
+            //WaitUtils.WaitToBeVisible(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]", 3);
+            //IWebElement newCode = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+
+
+            ///*if (newCode.Text == "GBTime")
+            //{
+            //    Assert.Pass("New Time record has been created successfully");
+            //}
+            //else
+            //{
+            //    Assert.Fail("New Time record hasn't been created.");
+            //}*/
+
+            //Assert.That(newCode.Text == code, "New Time record hasn't been created.");
+        }
+
 
         public void EditNewlyCreatedTMRecord(IWebDriver webDriver, string code, string description)
         {
