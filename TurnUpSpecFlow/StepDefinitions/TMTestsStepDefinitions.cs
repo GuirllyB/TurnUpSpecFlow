@@ -50,21 +50,21 @@ namespace SpecFlowTurnUpPortal.StepDefinitions
 
 
         [Then(@"verify TM record is created")]
-        public void ThenVerifyTMRecordIsCreated()
+        public void ThenVerifyTMRecordIsCreated(string code)
         {
-            tmPageObj.VerifyRecordCreated(webDriver);
+            tmPageObj.VerifyRecordCreated(webDriver, code);
         }
 
         [When(@"user clicks on <<Edit>> button under TM Page")]
-        public void WhenUserClicksOnEditButtonUnderTMPage()
+        public void WhenUserClicksOnEditButtonUnderTMPage(string code, string description)
         {
-            tmPageObj.EditNewlyCreatedTMRecord(webDriver);
+            tmPageObj.EditNewlyCreatedTMRecord(webDriver, code, description);
         }
 
         [Then(@"verify TM record is edited")]
-        public void ThenVerifyTMRecordIsEdited()
+        public void ThenVerifyTMRecordIsEdited(string code)
         {
-            tmPageObj.VerifyNewlyEditedTMRecord(webDriver);
+            tmPageObj.VerifyNewlyEditedTMRecord(webDriver, code);
         }
 
         [When(@"user clicks on <<Delete>> button under TM Page")]
@@ -74,9 +74,9 @@ namespace SpecFlowTurnUpPortal.StepDefinitions
         }
 
         [Then(@"verify TM record is deleted")]
-        public void ThenVerifyTMRecordIsDeleted()
+        public void ThenVerifyTMRecordIsDeleted(string code)
         {
-            tmPageObj.VerifyDeletedTMRecord(webDriver);
+            tmPageObj.VerifyDeletedTMRecord(webDriver, code);
         }
 
         //[TearDown]
