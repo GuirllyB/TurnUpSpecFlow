@@ -49,7 +49,7 @@ namespace SpecFlowTurnUpPortal.Pages
            
         }
 
-        public void VerifyRecordCreated(IWebDriver webDriver, string code)
+        public void VerifyRecordCreated(IWebDriver webDriver, string code, string description)
            {
             Thread.Sleep(2000);
 
@@ -57,11 +57,10 @@ namespace SpecFlowTurnUpPortal.Pages
             WaitUtils.WaitToBeClickable(webDriver, "XPath", "//*[@id=\"tmsGrid\"]/div[4]/a[4]/span", 3);
             IWebElement goToLastPageButton = webDriver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPageButton.Click();
-          
-            string tmTablePages = webDriver.FindElement(By.XPath("//li/span")).Text;
 
             //Pages
-            for (int i = 1; i <= tmTablePages.Length; i++)
+            int tmTablePages = Int32.Parse(webDriver.FindElement(By.XPath("//li/span")).Text);                
+            for (int i = 1; i <= tmTablePages; i++)
             {
                 //Rows
                 int tmTableRows = webDriver.FindElements(By.XPath("//tbody/tr")).Count();
