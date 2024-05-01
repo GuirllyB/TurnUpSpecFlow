@@ -50,9 +50,9 @@ namespace SpecFlowTurnUpPortal.StepDefinitions
 
 
         [Then(@"verify TM record is created")]
-        public void ThenVerifyTMRecordIsCreated(string code)
+        public void ThenVerifyTMRecordIsCreated(string code, string description)
         {
-            tmPageObj.VerifyRecordCreated(webDriver, code);
+            tmPageObj.VerifyRecordCreated(webDriver, code, description);
         }
 
         [When(@"user clicks on <<Edit>> button under TM Page")]
